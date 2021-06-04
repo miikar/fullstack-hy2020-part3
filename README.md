@@ -15,3 +15,4 @@ Tasks:
 - 3.9 DONE
 - 3.10 DONE
 - 3.11 DONE
+- 3.12 DONE
