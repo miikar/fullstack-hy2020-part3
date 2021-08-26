@@ -22,3 +22,6 @@ Tasks:
 - 3.16 DONE
 - 3.17 DONE
 - 3.18 DONE
+- 3.19 DONE
+- 3.20 DONE
+- 3.21 DONE
