@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
@@ -6,7 +6,7 @@ const Person = require('./models/person')
 const app = express()
 
 // Setup middlewares
-morgan.token('body', (req, res) => {
+morgan.token('body', (req) => {
   return JSON.stringify(req.body)
 })
 
@@ -20,10 +20,10 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms :b
 app.get('/info', (req, res) => {
   Person.countDocuments({})
     .then(result => {
-      msg = `
+      const msg = `
         <p>Phonebook has ${result} people</p>
         <p>${new Date()}</p>`
-      res.send(msg) 
+      res.send(msg)
     })
 })
 
@@ -47,7 +47,7 @@ app.get('/api/persons/:id', (req, res, next) => {
 
 app.delete('/api/persons/:id', (req, res, next) => {
   Person.findByIdAndRemove(req.params.id)
-    .then(result => {
+    .then(() => {
       res.status(204).end()
     })
     .catch(error => next(error))
@@ -60,13 +60,11 @@ app.post('/api/persons', (req, res, next) => {
     name: body.name,
     number: body.number,
   })
-  
+
   person.save()
     .then(savedPerson => savedPerson.toJSON())
     .then(savedAndFormattedPerson => res.json(savedAndFormattedPerson))
     .catch(error => next(error))
-      
-      
 })
 
 app.put('/api/persons/:id', (req, res, next) => {
@@ -107,5 +105,5 @@ app.use(errorHandler)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)  
+  console.log(`Server running on port ${PORT}`)
 })
